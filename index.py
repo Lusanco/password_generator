@@ -20,17 +20,23 @@ def generate_password():
     numbr_chars = ""  # Update on conditional
     randm_passw = ""  # Update on conditional
 
+    # Random number for conditional
+    randm_order = int(random.choice(string_digit))
+
     # Conditionals for lower_chars, numbr_chars
     for _ in range(0, 3):
         lower_chars += random.choice(string_lower)
     for _ in range(0, 4):
         numbr_chars += random.choice(string_digit)
 
-    # Saving generated values, separated in a Set
-    password_set = {upper_chars, speci_chars, lower_chars, numbr_chars}
-
-    # Converting generated values, seperated in a List
-    password_list = list(password_set)
+    if randm_order <= 1:
+        password_list = [upper_chars, lower_chars, speci_chars, numbr_chars]
+    elif randm_order >= 2 and randm_order <= 4:
+        password_list = [upper_chars, lower_chars, numbr_chars, speci_chars]
+    elif randm_order >= 5 and randm_order <= 7:
+        password_list = [upper_chars, speci_chars, lower_chars, numbr_chars]
+    else:
+        password_list = [upper_chars, lower_chars, speci_chars, numbr_chars]
 
     # Conditional for randm_passw
     for _ in range(0, len(password_list)):
